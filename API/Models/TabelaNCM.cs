@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NCM_API.Models
@@ -14,8 +16,6 @@ namespace NCM_API.Models
 
             Root root = JsonSerializer.Deserialize<Root>(conteudoArquivo);
             return root.Nomenclaturas;
-            
-            
         }
     }
 }

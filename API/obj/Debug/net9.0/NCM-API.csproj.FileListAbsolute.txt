@@ -72,3 +72,4 @@ C:\Users\Marinara Souza Silva\Desktop\Estudo C#\Portifólio\NCM-API\API\obj\Debu
 C:\Users\Marinara Souza Silva\Desktop\Estudo C#\Portifólio\NCM-API\API\obj\Debug\net9.0\NCM-API.pdb
 C:\Users\Marinara Souza Silva\Desktop\Estudo C#\Portifólio\NCM-API\API\obj\Debug\net9.0\NCM-API.genruntimeconfig.cache
 C:\Users\Marinara Souza Silva\Desktop\Estudo C#\Portifólio\NCM-API\API\obj\Debug\net9.0\ref\NCM-API.dll
+C:\Users\Marinara Souza Silva\Desktop\Estudo C#\Portifólio\NCM-API\API\obj\Debug\net9.0\NCM-API.sourcelink.json

@@ -49,5 +49,37 @@ namespace Test
             Assert.Equal(nomenclatura, actualValue);
             _ncmService.Verify(x => x.BuscarNCM(ncm), Times.Once);
         }
+
+        [Fact]
+        public void BucaPorPalavras()
+        {
+            //Arrange
+            string palavra = "Reatores nucleares caldeiras";
+            var ListaNomenclatura = new Nomenclatura
+            {
+                Codigo = "8467.29.10",
+                Descricao = "Capítulo: Reatores nucleares, caldeiras, máquinas, aparelhos e instrumentos mecânicos, e suas partes. Posição: Ferramentas pneumáticas, hidráulicas ou com motor (elétrico ou não elétrico) incorporado, de uso manual. Subposição: - Com motor elétrico incorporado:-- Outras Subitem: Tesouras",
+                DataInicio = "01/04/2022",
+                DataFim = "31/12/9999",
+                TipoAtoIni = "Res Camex",
+                NumeroAtoIni = "272",
+                AnoAtoIni = "2021"
+            };
+
+            var resultExpected = new List<Nomenclatura> { ListaNomenclatura };
+            _ncmService.Setup(x => x.BuscaPorPalavras(palavra)).Returns(resultExpected);
+
+            //Act
+            var result = _ncmController.BucaPorPalavras(palavra);
+
+            //Assert
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
+            var actualValue = Assert.IsType<List<Nomenclatura>>(okResult.Value);
+            //var actualValue = Assert.IsAssignableFrom<Nomenclatura>(okResult.Value);
+
+            Assert.Equal(resultExpected, actualValue);
+            _ncmService.Verify(x => x.BuscaPorPalavras(palavra), Times.Once);
+
+        }
     }
 }

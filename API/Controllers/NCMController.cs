@@ -20,11 +20,32 @@ namespace NCM_API.Controllers
         }
 
         [HttpGet("{ncm}")]
-        public  ActionResult<Nomenclatura> ObterNCM(string ncm)
+        public ActionResult<Nomenclatura> ObterNCM(string ncm)
         {
             var ncmresponse = _ncmService.BuscarNCM(ncm);
             if (string.IsNullOrEmpty(ncmresponse.Codigo)) return NotFound();
-           return Ok(ncmresponse);
+            return Ok(ncmresponse);
         }
+        
+
+        [HttpGet("Palavra/{texto}")]
+        public ActionResult<List<Nomenclatura>> BucaPorPalavras(string texto)
+        {
+            var ncmresponse = _ncmService.BuscaPorPalavras(texto);
+            
+            if (ncmresponse == null || ncmresponse.Count == 0 ) return NotFound();
+            return Ok(ncmresponse);
+        }
+        
+
+        [HttpGet("4Digitos/{texto}")]
+        public ActionResult<List<Nomenclatura>> BuscaPor4Digitos(string texto)
+        {
+            var ncmresponse = _ncmService.BuscaPor4Digitos(texto);
+            
+            if (ncmresponse == null || ncmresponse.Count == 0 ) return NotFound();
+            return Ok(ncmresponse);
+        }
+        
     }
 }
