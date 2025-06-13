@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using NCM_API.Models;
 using NCM_API.Service.Interfaces;
 
@@ -12,14 +13,22 @@ namespace NCM_API.Service
 {
     public class NCMService : INCMService
     {
-        private List<Nomenclatura> nomenclaturas { get; set; } = TabelaNCM.ListaNomenclatura();
+        private readonly IMemoryCache _memoryCache;
+        private const string Key = "NCMKEY";
+
+        public NCMService(IMemoryCache memoryCache)
+        {
+            _memoryCache = memoryCache;
+        }
+
+        private List<Nomenclatura> Nomenclaturas { get; set; } = TabelaNCM.ListaNomenclatura();
         public Nomenclatura BuscarNCM(string ncm)
         {
             StringBuilder DescricaoFormatada = new StringBuilder();
 
             if (Regex.IsMatch(ncm, @"^\d{4}\.\d{2}\.\d{2}$"))
             {
-                var existeLista = nomenclaturas.Where(x => x.Codigo == ncm).FirstOrDefault();
+                var existeLista = Nomenclaturas.Where(x => x.Codigo == ncm).FirstOrDefault();
                 if (existeLista != null)
                 {
                     var codigo2 = existeLista.Codigo[0..2];
@@ -32,12 +41,12 @@ namespace NCM_API.Service
                     var codigo7 = existeLista.Codigo[0..9];
 
 
-                    var checkCodigo2 = nomenclaturas.Where(x => x.Codigo == codigo2).FirstOrDefault();
-                    var checkCodigo4 = nomenclaturas.Where(x => x.Codigo == result).FirstOrDefault();
+                    var checkCodigo2 = Nomenclaturas.Where(x => x.Codigo == codigo2).FirstOrDefault();
+                    var checkCodigo4 = Nomenclaturas.Where(x => x.Codigo == result).FirstOrDefault();
 
-                    var checkCodigo5 = nomenclaturas.Where(x => x.Codigo == codigo5).FirstOrDefault();
-                    var checkCodigo6 = nomenclaturas.Where(x => x.Codigo == codigo6).FirstOrDefault();
-                    var checkCodigo7 = nomenclaturas.Where(x => x.Codigo == codigo7).FirstOrDefault();
+                    var checkCodigo5 = Nomenclaturas.Where(x => x.Codigo == codigo5).FirstOrDefault();
+                    var checkCodigo6 = Nomenclaturas.Where(x => x.Codigo == codigo6).FirstOrDefault();
+                    var checkCodigo7 = Nomenclaturas.Where(x => x.Codigo == codigo7).FirstOrDefault();
 
                     if (checkCodigo2 != null)
                     {
@@ -117,14 +126,28 @@ namespace NCM_API.Service
         }
 
         private List<Nomenclatura> NomenclaturasFormatadas()
-        {
-            List<Nomenclatura> listaDescriçaoFormatada = new();
-            var ListaNomenclatura = nomenclaturas.Where(x => x.Codigo.Length == 10);
+        {            
+            var listaDescriçaoFormatada = new List<Nomenclatura>();
+
+            var ListaNomenclatura = Nomenclaturas.Where(x => x.Codigo.Length == 10);
+
+            if (_memoryCache.TryGetValue(Key, out List<Nomenclatura> listaCache))
+                {
+                    return listaCache;
+                }
 
             foreach (var item in ListaNomenclatura)
+                {
+                    listaDescriçaoFormatada.Add(BuscarNCM(item.Codigo));
+                }
+
+            var memoryCacheEntryOptions = new MemoryCacheEntryOptions
             {
-                listaDescriçaoFormatada.Add(BuscarNCM(item.Codigo));
-            }
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(180),                    
+                SlidingExpiration = TimeSpan.FromMinutes(60)
+            };
+            _memoryCache.Set(Key, listaDescriçaoFormatada, memoryCacheEntryOptions);
+
             return listaDescriçaoFormatada;
         }
     }
