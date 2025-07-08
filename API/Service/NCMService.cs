@@ -20,8 +20,8 @@ namespace NCM_API.Service
         {
             _memoryCache = memoryCache;
         }
-
         private List<Nomenclatura> Nomenclaturas { get; set; } = TabelaNCM.ListaNomenclatura();
+        
         public Nomenclatura BuscarNCM(string ncm)
         {
             StringBuilder DescricaoFormatada = new StringBuilder();
@@ -53,12 +53,10 @@ namespace NCM_API.Service
                         DescricaoFormatada.Append($"Capítulo: {checkCodigo2.Descricao}");
                     }
 
-
                     if (checkCodigo4 != null)
                     {
                         DescricaoFormatada.Append($" Posição: {checkCodigo4.Descricao}");
                     }
-
 
                     if (checkCodigo5 != null && checkCodigo5.Descricao != "- Outros:")
                     {
@@ -81,7 +79,6 @@ namespace NCM_API.Service
                     }
 
                     DescricaoFormatada.Append($" Subitem: {existeLista.Descricao}");
-
 
                     return new Nomenclatura
                     {
