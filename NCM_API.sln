@@ -2,9 +2,9 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCM-API", "API\NCM-API.csproj", "{D032EC35-F5C1-4186-A7E5-8BD7B14A57FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCM-API", "API\NCM-API.csproj", "{3FECB186-3C7E-471D-9A90-D50F56F7E45D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{B6834A49-4924-4ED0-A44B-A9B507299841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A5A46CA7-1DB4-4C9A-924A-E0EFC653935E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +36,14 @@ Global
 		{B6834A49-4924-4ED0-A44B-A9B507299841}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6834A49-4924-4ED0-A44B-A9B507299841}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6834A49-4924-4ED0-A44B-A9B507299841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FECB186-3C7E-471D-9A90-D50F56F7E45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FECB186-3C7E-471D-9A90-D50F56F7E45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FECB186-3C7E-471D-9A90-D50F56F7E45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FECB186-3C7E-471D-9A90-D50F56F7E45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A46CA7-1DB4-4C9A-924A-E0EFC653935E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A46CA7-1DB4-4C9A-924A-E0EFC653935E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A46CA7-1DB4-4C9A-924A-E0EFC653935E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A46CA7-1DB4-4C9A-924A-E0EFC653935E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

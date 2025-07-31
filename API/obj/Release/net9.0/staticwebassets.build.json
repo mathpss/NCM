@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "qdp5djyALUN0Y2LGJq1OJ1o7Qp1FKOsWNDiH0Xt52GA=",
+  "Source": "NCM_API",
+  "BasePath": "_content/NCM_API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
