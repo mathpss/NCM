@@ -3,7 +3,7 @@ O projeto foi desenvolvido para fazer busca de NCM, na tabela em formato JSON fo
 
 ---
 
-## 🚀 Tecnologias utilisadas
+## 🚀 Tecnologias utilizadas
 
 - .NET (net9.0)
 -  Swagger
